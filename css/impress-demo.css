@@ -49,6 +49,10 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+h3, pre, p {
+    font-size: 70%;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -58,7 +62,8 @@ body {
     line-height: 1;
 }
 ol, ul {
-    list-style: none;
+    /*list-style: none;*/
+    font-size: 70%;
 }
 blockquote, q {
     quotes: none;
