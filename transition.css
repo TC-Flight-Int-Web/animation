@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+}
+.container {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  border: solid 5px red;
+  background: orange;
+  transition: width 2s, height 4s, line-height 4s;
+  -webkit-transition: width 2s, height 4s, line-height 4s;
+}
+.container:hover {
+  width: 300px;
+  height: 300px;
+  line-height: 300px;
+}
+.pool {
+  width: 100%;
+  background-color: deepskyblue;
+}
+.pool:hover .player {
+  left: 90%;
+  border-radius: 50%;
+  background-color: gold;
+  transform: rotate(360deg);
+}
+.pool .lane {
+  position: relative;
+  height: 70px;
+  border-bottom: 2px dashed red;
+  line-height: 70px;
+  font-size: 70px;
+  text-align: center;
+  color: lightskyblue;
+}
+.pool .lane:last-of-type {
+  border-bottom: none;
+}
+.pool .player {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 14px;
+  line-height: 50px;
+  background-color: peachpuff;
+  color: red;
+}
+.pool .ease {
+  transition: all 4s ease;
+}
+.pool .ease-in {
+  transition: all 4s ease-in;
+}
+.pool .ease-out {
+  transition: all 4s ease-out;
+}
+.pool .ease-in-out {
+  transition: all 4s ease-in-out;
+}
+.pool .linear {
+  transition: all 4s linear;
+}

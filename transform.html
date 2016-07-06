@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transform</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <style>
+    .container {
+      width: 100%;
+      height: 500px;
+      transform-style: preserve-3d;
+      perspective: 2000px;
+    }
+    .object {
+      margin: auto;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(#000000 0%, #0BB20C 100%);
+      position: relative;
+    }
+    .point {
+      width: 4px;
+      height: 4px;
+      background-color: yellow;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="object">
+    <div class="point">
+
+    </div>
+  </div>
+</div>
+<div class="handler">
+  <div>transform-origin: <span id="transform-origin"></span><br/>
+    X: <input type="range" value="50" min="0" max="100" id="ox" class="range-origin">
+    Y: <input type="range" value="50" min="0" max="100" id="oy" class="range-origin">
+    Z: <input type="range" value="50" min="0" max="100" id="oz" class="range-origin">
+  </div>
+  <div>rotate: <span id="rotate"></span><br/>
+    <input type="range" value="0" min="-360" max="360" id="r">
+  </div>
+  <div>rotate3d: <span id="rotate3d"></span><br/>
+    X: <input type="range" value="0" min="-360" max="360" id="rx" class="r3d">
+    Y: <input type="range" value="0" min="-360" max="360" id="ry" class="r3d">
+    Z: <input type="range" value="0" min="-360" max="360" id="rz" class="r3d">
+  </div>
+  <div>translate3d: <span id="translate3d"></span><br/>
+    X: <input type="range" value="0" min="-360" max="360" id="tx" class="t3d">
+    Y: <input type="range" value="0" min="-360" max="360" id="ty" class="t3d">
+    Z: <input type="range" value="0" min="-360" max="360" id="tz" class="t3d">
+  </div>
+  <div>scale: <span id="scale"></span><br/>
+    X: <input type="range" value="1" min="-10" max="10" id="sx" class="s" step="0.1">
+    Y: <input type="range" value="1" min="-10" max="10" id="sy" class="s" step="0.1">
+  </div>
+  <div>skew: <span id="skew"></span><br/>
+    X: <input type="range" value="0" min="-360" max="360" id="skx" class="sk">
+    Y: <input type="range" value="0" min="-360" max="360" id="sky" class="sk">
+  </div>
+</div>
+<script>
+  $(function(){
+    var ox = $("#ox").val(),
+        oy = $("#oy").val(),
+        oz = $("#oz").val(),
+        r = $("#r").val(),
+        rx = $("#rx").val(),
+        ry = $("#ry").val(),
+        rz = $("#rz").val(),
+        tx = $("#tx").val(),
+        ty = $("#ty").val(),
+        tz = $("#tz").val(),
+        sx = $("#sx").val(),
+        sy = $("#sy").val(),
+        skx = $("#skx").val(),
+        sky = $("#sky").val();
+    $("#transform-origin").text(ox + "% " + oy + "% " + oz + "%");
+    var rotate3d = "rotateX(" + rx + "deg) rotateY(" + ry + "deg) rotateZ(" + rz + "deg)";
+    var translate3d = "translate3d(" + tx + "px, " + ty + "px, " + tz + "px)";
+    var scale = "scale(" + sx + "," + sy + ")";
+    var skew = "skew(" + skx + "deg," + sky + "deg)";
+    $("#rotate").text(r + "deg");
+    $("#rotate3d").text(rotate3d);
+    $("#translate3d").text(translate3d);
+    $("#scale").text(scale);
+    $("#skew").text(skew);
+
+    $(".range-origin").on("change", function(){
+      ox = $("#ox").val(), oy = $("#oy").val(), oz = $("#oz").val();
+      $("#transform-origin").text(ox + "% " + oy + "% " + oz + "%");
+      $(".point").css("left", ox + "%").css("top", oy + "%");
+      $(".object").css("transform-origin", ox + "% " + oy + "%");
+    });
+
+    $("#r").on("change", function(){
+      r = $("#r").val();
+      $("#rotate").text(r + "deg");
+      $(".object").css("transform", "rotate(" + r + "deg)");
+    });
+
+    $(".r3d").on("change", function(){
+      rx = $("#rx").val(), ry = $("#ry").val(), rz = $("#rz").val();
+      var rotate3d = "rotateX(" + rx + "deg) rotateY(" + ry + "deg) rotateZ(" + rz + "deg)";
+      $("#rotate3d").text(rotate3d);
+      $(".object").css("transform", rotate3d);
+    });
+
+    $(".t3d").on("change", function() {
+      tx = $("#tx").val(), ty = $("#ty").val(), tz = $("#tz").val();
+      translate3d = "translate3d(" + tx + "px, " + ty + "px, " + tz + "px)";
+      $("#translate3d").text(translate3d);
+      $(".object").css("transform", translate3d);
+    });
+
+    $(".s").on("change", function() {
+      sx = $("#sx").val(), sy = $("#sy").val();
+      scale = "scale(" + sx + "," + sy + ")";
+      $("#scale").text(scale);
+      $(".object").css("transform", scale);
+    });
+
+    $(".sk").on("change", function(){
+      skx = $("#skx").val(), sky = $("#sky").val();
+      skew = "skew(" + skx + "deg," + sky + "deg)";
+      $("#skew").text(skew);
+      $(".object").css("transform", skew);
+    });
+  });
+</script>
+</body>
+</html>
